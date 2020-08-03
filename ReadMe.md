@@ -2,10 +2,9 @@
 Today we are going to look at the python and golang programming languages in the context of model development 
 and look at some of the differences why in our opinion we think golang is a better choice then python. Python and Go are both Marketed as
 "General Purpose" programming languages and both have very active communities. Teaching go is out of the scope of this document but resources for those 
-who want to understand more will be provided. In this comparison we are going to look at 3 major sections of comparison.
+who want to understand more will be provided. In this comparison we are going to look at 2 major sections of comparison.
 * Development productivity
 * Performance
-* Community / learning resources
 
 
 # Development Productivity
