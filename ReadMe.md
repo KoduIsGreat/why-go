@@ -137,7 +137,7 @@ Use "go help <command>" for more information about a command.
 
 ```
 
-## Backwards Compatability
+## Backwards Compatibility
 Backwards compatibility is not breaking your users for a feature change. The go team has 
 pledged to not break backwards compatibility for existing go users and go programs and have continually done so over the
 last 10 years. You can read the full go 1 compatibility statement [here](https://golang.org/doc/go1compat).
@@ -154,7 +154,7 @@ We will look at 3 main areas
 * concurrency model
 * pointers
 
-## Compiled vs intrepreted
+## Compiled vs Interpreted
 Go is a compiled language, that supports cross compilation for windows, Mac and Linux with no extra setup required.
 when you compile a go program a single binary executable is produced. This typically results in much smaller disk space to host a go program.
 In pythons case, you need the python runtime to execute a python program as well as all of the source code and dependencies.
