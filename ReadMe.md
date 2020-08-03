@@ -51,8 +51,50 @@ way to format go code and most editors will auto-format on save.
 ## Standard Libraries
 Pythons standard library is very bare bones and minimal, opting to provide more features via installable modules.
 Go on the other hand has a robust standard library that is very well thought out and easy to use. Go is primarily used
-for building distributed systems and services, which is what much of our work is going towards
+for building distributed systems and services, which is what much of our work is going towards.
+A simple example of this is with Python and making http requests, as well as dealing with json.
+python has pretty good json support however alot of native python types cant be serialized by default like datetime.datetime for example
+in python to do http requests you typically have to install a package `requests`. The standard library does have a http client
+but its not really used and the majority of individuals use requests, which just provides a better interface.
+```python 
+# you need to install requests
+import requests
 
+res = requests.get("www.google.com")
+```
+```go
+package main
+import  "net/http"
+func main() { 
+   res, err :=  http.Get("www.google.com")
+   if err != nil {
+     //handle error
+   }
+}
+```
+Another example is creating an http server in go this is a breeze requiring no frameworks or external dependencies.
+This is a very simple example of how to get a http server to say hello world to the browser when visited.
+```go
+package main
+
+import (
+	"log"
+	"net/http"
+)
+
+func main () {
+	http.HandleFunc("/hello", func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("hello world!"))
+	})
+	if err := http.ListenAndServe("localhost:8080", nil); err != nil {
+		log.Fatal(err)
+	}
+}
+```
+Normally in python this is done with different kinds of frameworks, like flask, fastapi, django, flask-restful, flask-restplus
+Ive tried most of these and they are all useful in their own way but one common theme, is that you have to learn someone elses API.
+Frameworks call your code, your code calls libraries. in GO frameworks aren't as prevelant which means you dont have to learn someone
+elses design ideologies allowing you to focus on writing simple clean code.
 ## Tools & Dependencies
 In python it is considered best practice when developing to use whats known as a virtual environment. Taken from the python Wiki
 ```
@@ -158,7 +200,11 @@ We will look at 3 main areas
 Go is a compiled language, that supports cross compilation for windows, Mac and Linux with no extra setup required.
 when you compile a go program a single binary executable is produced. This typically results in much smaller disk space to host a go program.
 In pythons case, you need the python runtime to execute a python program as well as all of the source code and dependencies.
-Due to python being a intrepreted language it suffers from relatively slow start up times when compared to go programs.
+Due to python being a interpreted language it suffers from relatively slow start up times when compared to go programs.
+In the context of hydrobid, we provide a compiled executable and NOT the source code. This is a concern that needs to be
+taken into consideration when choosing a language for developing a system that you plan on distributing. arguably it is 
+much easier to distribute a compiled executable than to distribute a runtime and the source of the application being
+distributed.
 
 ## Concurrency model
 Python is a single threaded language it has a GIL (Global interpreter lock) and uses a coroutine async / await 
